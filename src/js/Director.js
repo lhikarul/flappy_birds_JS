@@ -6,8 +6,11 @@ export class Director {
         this.dataStroe = DataStore.getInstance();
     }
     run () {
-        const backgroundSprite = this.dataStroe.get('background');
-        backgroundSprite.draw();
+        this.dataStroe.get('background').draw();
+        this.dataStroe.get('land').draw();
+
+        let timer = requestAnimationFrame(() => this.run());
+        this.dataStroe.put('timer',timer);
     }
     static getInstance() {
         if (!Director.instance) {

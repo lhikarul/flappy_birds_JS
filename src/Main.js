@@ -1,5 +1,6 @@
 import {ResourceLoader} from './js/base/ResourceLoader';
 import { BackGround } from './js/runtime/BackGround';
+import {Land} from './js/runtime/Land';
 import {Director} from './js/Director';
 import { DataStore } from './js/base/DataStore';
 
@@ -22,7 +23,9 @@ export class Main {
         this.init();
     }
     init () {
-        this.dataStore.put('background',BackGround);
+        this.dataStore
+        .put('background',BackGround)
+        .put('land',Land)
 
         Director.getInstance().run();
 

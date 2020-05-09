@@ -35,7 +35,17 @@ export class Birds extends Sprite {
             this.count = 0;
         }
         this.index = Math.floor(this.count);
-       
+
+        // 重力加速度
+        const g = 0.98 / 2.4;
+        const offsetUp = 30;
+        const offsetY = (g * this.time * (this.time - offsetUp)) / 2;
+
+        for (let i=0; i <= 2; i++) {
+            this.birdsY[i] = this.y[i] + offsetY;
+        }
+        this.time += 1;
+
         super.draw(
             this.img,
             this.clippingX[this.index],

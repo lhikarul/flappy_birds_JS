@@ -1,3 +1,4 @@
+import background from 'image/background.png';
 import {ResourceLoader} from './js/base/ResourceLoader';
 import {Director} from './js/Director';
 export class Main {
@@ -11,6 +12,11 @@ export class Main {
 
        Director.getInstance();
 
+       let image = new Image();
+       image.src =  background;
+       image.onload = () => {
+        this.ctx.drawImage(image,0,0,image.width,image.height,0,0,image.width,image.height)
+       }
     }
     onResourceFirstLoaded(map) {
     

@@ -1,7 +1,13 @@
+import { DataStore } from "./base/DataStore";
+
 // 控制遊戲
 export class Director {
     constructor() {
-        console.log('constructor')
+        this.dataStroe = DataStore.getInstance();
+    }
+    run () {
+        const backgroundSprite = this.dataStroe.get('background');
+        backgroundSprite.draw();
     }
     static getInstance() {
         if (!Director.instance) {

@@ -1,4 +1,5 @@
 import {ResourceLoader} from './js/base/ResourceLoader';
+import {Director} from './js/Director';
 export class Main {
     constructor() {
        this.canvas = document.getElementById('game_canvas');
@@ -6,10 +7,12 @@ export class Main {
     
        const loader = ResourceLoader.create();
 
-       loader.onLoaded(map => this.onResourceFirstLoaded(map))
+       loader.onLoaded(map => this.onResourceFirstLoaded(map));
+
+       Director.getInstance();
 
     }
     onResourceFirstLoaded(map) {
-        console.log('map ',map);
+    
     }
 }

@@ -22,10 +22,30 @@ export class Birds extends Sprite {
         this.birdWidth = 34;
         this.birdsWidth = [this.birdWidth,this.birdWidth,this.birdWidth];
         this.birdHeight = 24;
-        this.birdsHeight [this.birdHeight,this.birdHeight,this.birdHeight];
+        this.birdsHeight = [this.birdHeight,this.birdHeight,this.birdHeight];
         this.y = [this.birdY,this.birdY,this.birdY];
         this.index = 0;
         this.count = 0;
         this.time = 0;
+    }
+    draw () {
+        const speed = 0.2;
+        this.count = this.count + speed;
+        if (this.index >= 2) {
+            this.count = 0;
+        }
+        this.index = Math.floor(this.count);
+       
+        super.draw(
+            this.img,
+            this.clippingX[this.index],
+            this.clippingY[this.index],
+            this.clippingWidth[this.index],
+            this.clippingHeight[this.index],
+            this.birdsX[this.index],
+            this.birdsY[this.index],
+            this.birdsWidth[this.index],
+            this.birdsHeight[this.index]
+        )
     }
 }

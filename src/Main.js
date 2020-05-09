@@ -1,5 +1,15 @@
+import {ResourceLoader} from './js/base/ResourceLoader';
 export class Main {
     constructor() {
-        console.log('hell222222o')
+       this.canvas = document.getElementById('game_canvas');
+       this.ctx = this.canvas.getContext('2d');
+    
+       const loader = ResourceLoader.create();
+
+       loader.onLoaded(map => this.onResourceFirstLoaded(map))
+
+    }
+    onResourceFirstLoaded(map) {
+        console.log('map ',map);
     }
 }

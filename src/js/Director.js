@@ -20,11 +20,23 @@ export class Director {
 
     run () {
         this.dataStroe.get('background').draw();
-        this.dataStroe.get('land').draw();
+
+        const pencils = this.dataStroe.get('pencils');
+
+        if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
+            pencils.shift();
+            pencils.shift();
+        }
+
+        if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2  && pencils.length === 2) {
+            this.createPencil();
+        }
 
         this.dataStroe.get('pencils').forEach(function(value){
             value.draw();
         })
+
+        this.dataStroe.get('land').draw();
 
         let timer = requestAnimationFrame(() => this.run());
         this.dataStroe.put('timer',timer);

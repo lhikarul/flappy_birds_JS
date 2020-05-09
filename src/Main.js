@@ -9,7 +9,7 @@ export class Main {
        this.canvas = document.getElementById('game_canvas');
        this.ctx = this.canvas.getContext('2d');
        this.dataStore = DataStore.getInstance();
-    
+       this.director = Director.getInstance();
        const loader = ResourceLoader.create();
 
        loader.onLoaded(map => this.onResourceFirstLoaded(map));
@@ -26,8 +26,10 @@ export class Main {
         this.dataStore
         .put('background',BackGround)
         .put('land',Land)
+        .put('pencils',[])
 
-        Director.getInstance().run();
+        this.director.createPencil();
+        this.director.run();
 
     }
 }

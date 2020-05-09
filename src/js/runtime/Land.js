@@ -1,4 +1,5 @@
 import { Sprite } from "../base/Sprite";
+import { Director } from "../Director";
 
 export class Land extends Sprite {
     constructor () {
@@ -7,7 +8,7 @@ export class Land extends Sprite {
 
         // 地板的水平變化座標
         this.landX = 0;
-        this.landSpeed = 2;
+        this.landSpeed = Director.getInstance().moveSpeed;
     }
     draw () {
         this.landX = this.landX + this.landSpeed;

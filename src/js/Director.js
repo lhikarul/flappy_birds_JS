@@ -1,13 +1,30 @@
 import { DataStore } from "./base/DataStore";
+import { UpPencil } from "./runtime/UpPencil";
+import { DownPencil } from "./runtime/DownPencil";
 
 // 控制遊戲
 export class Director {
     constructor() {
         this.dataStroe = DataStore.getInstance();
+        this.moveSpeed = 2;
     }
+
+    createPencil () {
+        const miniTop = window.innerHeight / 8;
+        const maxTop = window.innerHeight / 2;
+        const top = miniTop + Math.random() * (maxTop - miniTop);
+
+        this.dataStroe.get('pencils').push(new UpPencil(top));
+        this.dataStroe.get('pencils').push(new DownPencil(top));
+    }
+
     run () {
         this.dataStroe.get('background').draw();
         this.dataStroe.get('land').draw();
+
+        this.dataStroe.get('pencils').forEach(function(value){
+            value.draw();
+        })
 
         let timer = requestAnimationFrame(() => this.run());
         this.dataStroe.put('timer',timer);

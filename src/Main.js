@@ -23,6 +23,9 @@ export class Main {
         this.init();
     }
     init () {
+
+        this.director.isGameOver = false;
+
         this.dataStore
         .put('background',BackGround)
         .put('land',Land)

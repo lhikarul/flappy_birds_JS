@@ -38,7 +38,8 @@ export class Director {
             })
 
             this.dataStroe.get('land').draw();
-
+            this.dataStroe.get('birds').draw();
+            
             let timer = requestAnimationFrame(() => this.run());
             this.dataStroe.put('timer',timer);
         }else {

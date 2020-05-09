@@ -3,6 +3,7 @@ import { BackGround } from './js/runtime/BackGround';
 import {Land} from './js/runtime/Land';
 import {Director} from './js/Director';
 import { DataStore } from './js/base/DataStore';
+import { Birds } from './js/player/Birds';
 
 export class Main {
     constructor() {
@@ -27,10 +28,11 @@ export class Main {
         this.director.isGameOver = false;
 
         this.dataStore
+        .put('pencils',[])
         .put('background',BackGround)
         .put('land',Land)
-        .put('pencils',[])
-
+        .put('birds',Birds)
+        
         this.director.createPencil();
         this.director.run();
 

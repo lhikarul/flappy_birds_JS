@@ -8,6 +8,12 @@ export class Director {
         this.dataStroe = DataStore.getInstance();
         this.moveSpeed = 2;
     }
+    birdsEvent() {
+        for (let i=0; i<=2; i++) {
+            this.dataStroe.get('birds').y[i] = this.dataStroe.get('birds').birdsY[i];
+        }
+        this.dataStroe.get('birds').time = 0;
+    }
 
     createPencil () {
         const miniTop = window.innerHeight / 8;

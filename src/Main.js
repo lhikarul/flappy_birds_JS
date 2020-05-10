@@ -24,7 +24,7 @@ export class Main {
         this.init();
     }
     init () {
-
+        window.innerWidth = 375;
         this.director.isGameOver = false;
 
         this.dataStore

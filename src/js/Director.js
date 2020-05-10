@@ -24,7 +24,18 @@ export class Director {
         this.dataStroe.get('pencils').push(new DownPencil(top));
     }
 
+    check () {
+        const birds = this.dataStroe.get('birds');
+        const land = this.dataStroe.get('land');
+
+        if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
+            this.isGameOver = true;
+            return;
+        }
+    }
+
     run () {
+        this.check();
         if (!this.isGameOver) {
             this.dataStroe.get('background').draw();
 

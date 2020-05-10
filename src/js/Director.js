@@ -86,6 +86,7 @@ export class Director {
             let timer = requestAnimationFrame(() => this.run());
             this.dataStroe.put('timer',timer);
         }else {
+            this.dataStroe.get('startButton').draw();
             cancelAnimationFrame(this.dataStroe.get('timer'));
             this.dataStroe.destory();
         }

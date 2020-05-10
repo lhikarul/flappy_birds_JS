@@ -1,6 +1,7 @@
 import { DataStore } from "./base/DataStore";
 import { UpPencil } from "./runtime/UpPencil";
 import { DownPencil } from "./runtime/DownPencil";
+import { Score } from "./player/Score";
 
 // 控制遊戲
 export class Director {
@@ -28,6 +29,7 @@ export class Director {
         const birds = this.dataStroe.get('birds');
         const land = this.dataStroe.get('land');
         const pencils = this.dataStroe.get('pencils');
+        const score = this.dataStroe.get('score');
 
         if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
             this.isGameOver = true;
@@ -58,6 +60,11 @@ export class Director {
                 return;
             }
         }
+
+        if (birds.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore) {
+            score.isScore = false;
+            score.scoreNumber++;
+        }
     }
 
     run () {
@@ -79,8 +86,9 @@ export class Director {
             this.dataStroe.get('pencils').forEach(function(value){
                 value.draw();
             })
-
+           
             this.dataStroe.get('land').draw();
+            this.dataStroe.get('score').draw();
             this.dataStroe.get('birds').draw();
             
             let timer = requestAnimationFrame(() => this.run());

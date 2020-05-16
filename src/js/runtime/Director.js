@@ -94,7 +94,7 @@ export class Director {
             const timer = requestAnimationFrame(() => this.run())
             this.dataStore.put('timer',timer);
         }else {
-            console.log('game over');
+            this.dataStore.get('startButton').draw();
             cancelAnimationFrame(this.dataStore.get('timer'));
             this.dataStore.destory();
         }

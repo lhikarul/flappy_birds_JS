@@ -23,13 +23,25 @@ export class Main {
         this.init();
     }
     init () {
+        window.innerWidth = 375;
         this.director.isGameOver = false;
        this.dataStore
        .put('background',Background)
        .put('land',Land)
        .put('pencils',[])
        .put('birds',Birds)
+       this.registerEvent();
        this.director.createPencil();
        this.director.run();
+    }
+    registerEvent() {
+        this.canvas.addEventListener('click',(e) => {
+            e.preventDefault();
+            if (this.director.isGameOver) {
+                this.init();
+            }else {
+                this.director.birdsEvent();
+            }
+        })
     }
 }

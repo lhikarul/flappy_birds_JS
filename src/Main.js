@@ -5,6 +5,7 @@ import { DataStore } from "./js/base/DataStore";
 import { Land } from "./js/runtime/Land";
 import { Birds } from "./js/player/Birds";
 import { StartButton } from "./js/player/StartButton";
+import { Score } from "./js/player/Score";
 
 // 初始化整個遊戲,作為遊戲開始的入口
 export class Main {
@@ -32,6 +33,7 @@ export class Main {
        .put('pencils',[])
        .put('birds',Birds)
        .put('startButton',StartButton)
+       .put('score',Score)
        this.registerEvent();
        this.director.createPencil();
        this.director.run();

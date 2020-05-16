@@ -37,6 +37,7 @@ export class Director {
         const bird = this.dataStore.get('birds')
         const land = this.dataStore.get('land')
         const pencils = this.dataStore.get('pencils');
+        const score = this.dataStore.get('score');
 
         if (bird.birdsY[0] + bird.birdsHeight[0] >= land.y) {
             this.isGameOver = true;
@@ -64,6 +65,11 @@ export class Director {
           }
         }
 
+        if (bird.birdsX[0] > pencils[0].x + pencils[0].width && score.isScore) {
+            score.isScore = false;
+            score.scoreNumber += 1;
+        }
+
     }
     birdsEvent () {
         for (let i=0; i<=2; i++) {
@@ -81,6 +87,7 @@ export class Director {
             if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
                 pencils.shift()
                 pencils.shift();
+                this.dataStore.get('score').isScore = true;
             }
             
             if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
@@ -90,6 +97,7 @@ export class Director {
             this.dataStore.get('pencils').forEach(pencil => pencil.draw());
             this.dataStore.get('land').draw();
             this.dataStore.get('birds').draw();
+            this.dataStore.get('score').draw();
 
             const timer = requestAnimationFrame(() => this.run())
             this.dataStore.put('timer',timer);

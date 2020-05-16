@@ -22,6 +22,13 @@ export class Director {
         this.dataStore.get('pencils').push(new UpPencil(top));
         this.dataStore.get('pencils').push(new DownPencil(top));
     }
+    check () {
+        const bird = this.dataStore.get('birds')
+        const land = this.dataStore.get('land')
+        if (bird.birdsY[0] + bird.birdsHeight[0] >= land.y) {
+            this.isGameOver = true;
+        }
+    }
     birdsEvent () {
         for (let i=0; i<=2; i++) {
             this.dataStore.get('birds').y[i] = this.dataStore.get('birds').birdsY[i];
@@ -29,6 +36,7 @@ export class Director {
         this.dataStore.get('birds').time = 0;
     }
     run () {
+        this.check();
         if (!this.isGameOver){
             this.dataStore.get('background').draw();
 

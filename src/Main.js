@@ -20,7 +20,7 @@ export class Main {
     }
     onResourceFirstLoaded(map) {
         this.dataStore.ctx = this.ctx;
-        this.dataStore.map = map;
+        this.dataStore.res = map;
         this.init();
     }
     init () {

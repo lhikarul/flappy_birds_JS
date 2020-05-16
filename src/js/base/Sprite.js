@@ -26,7 +26,7 @@ export class Sprite {
         this.height = height
     }
     static getImage (key) {
-        return DataStore.getInstance().map.get(key);
+        return DataStore.getInstance().res.get(key);
     }
     draw (img = this.img,
           srcX = this.srcX,

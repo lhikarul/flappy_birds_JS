@@ -7,8 +7,7 @@ export class Pencil extends Sprite {
             image,
             0,0,
             image.width,image.height,
-            // window.innerWidth,0,
-            0,0,
+            window.innerWidth,0,
             image.width,image.height
         )
         this.top = top;

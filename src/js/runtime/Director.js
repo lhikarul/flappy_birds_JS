@@ -24,9 +24,20 @@ export class Director {
     }
     run () {
         this.dataStore.get('background').draw();
-        this.dataStore.get('land').draw();
+
+        const pencils = this.dataStore.get('pencils');
+
+        if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
+            pencils.shift()
+            pencils.shift();
+        }
+        
+        if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
+            this.createPencil();
+        }
 
         this.dataStore.get('pencils').forEach(pencil => pencil.draw());
+        this.dataStore.get('land').draw();
 
         const timer = requestAnimationFrame(() => this.run())
         this.dataStore.put('timer',timer);

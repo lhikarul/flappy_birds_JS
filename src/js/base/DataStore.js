@@ -11,6 +11,10 @@ export class DataStore {
         this.map = new Map();
     }
     put (key,value) {
+        // 判斷 function
+        if (value && typeof value === "functioin") {
+            value = new value();
+        }
         this.map.set(key,value);
         return this;
     }

@@ -13,5 +13,9 @@ export class Director {
     }
     run () {
         this.dataStore.get('background').draw();
+        this.dataStore.get('land').draw();
+
+        const timer = requestAnimationFrame(() => this.run())
+        this.dataStore.put('timer',timer);
     }
 }

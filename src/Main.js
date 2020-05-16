@@ -2,6 +2,7 @@ import { ResourceLoader } from "./js/base/ResourceLoader";
 import { Director } from "./js/runtime/Director";
 import { Background } from "./js/runtime/Background";
 import { DataStore } from "./js/base/DataStore";
+import { Land } from "./js/runtime/Land";
 
 // 初始化整個遊戲,作為遊戲開始的入口
 export class Main {
@@ -23,6 +24,7 @@ export class Main {
     }
     init () {
        this.dataStore.put('background',Background);
+       this.dataStore.put('land',Land);
        Director.getInstance().run();
     }
 }

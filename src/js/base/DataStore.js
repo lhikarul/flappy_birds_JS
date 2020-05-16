@@ -12,7 +12,7 @@ export class DataStore {
     }
     put (key,value) {
         // 判斷 function
-        if (value && typeof value === "functioin") {
+        if (value && typeof value === "function") {
             value = new value();
         }
         this.map.set(key,value);

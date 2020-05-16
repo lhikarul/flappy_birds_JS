@@ -10,6 +10,17 @@ export class Director {
         }
         return Director.instance;
     }
+    static isStrike(bird,pencil) {
+        let strike = false;
+        if (bird.top > pencil.bottom || 
+            bird.bottom < pencil.top || 
+            bird.right < pencil.left || 
+            bird.left > pencil.right) 
+        {
+            strike = true;
+        }
+        return !strike;
+    }
     constructor() {
         this.dataStore = DataStore.getInstance();
         this.landSpeed = 2;
@@ -25,9 +36,34 @@ export class Director {
     check () {
         const bird = this.dataStore.get('birds')
         const land = this.dataStore.get('land')
+        const pencils = this.dataStore.get('pencils');
+
         if (bird.birdsY[0] + bird.birdsHeight[0] >= land.y) {
             this.isGameOver = true;
+            return;
         }
+        const birdsBorder = {
+            top: bird.y[0],
+            bottom: bird.birdsY[0] + bird.birdsHeight[0],
+            left: bird.birdsX[0],
+            right: bird.birdsX[0] + bird.birdsWidth[0]
+        }
+        const length = pencils.length;
+        
+        for (let i=0; i < length; i++) {
+            const pencil = pencils[i];
+            const pencilBorder = {
+                top: pencil.y,
+                bottom: pencil.y + pencil.height,
+                left: pencil.x,
+                right : pencil.x + pencil.width
+            }
+          if (Director.isStrike(birdsBorder,pencilBorder)) {
+              this.isGameOver = true;
+              return;
+          }
+        }
+
     }
     birdsEvent () {
         for (let i=0; i<=2; i++) {
